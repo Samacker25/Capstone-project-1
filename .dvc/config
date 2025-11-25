@@ -1,0 +1,4 @@
+[core]
+    remote = capstoneproject
+['remote "capstoneproject"']
+    url = s3://capstone-proj-1
