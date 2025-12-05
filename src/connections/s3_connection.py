@@ -16,8 +16,8 @@ class s3_operations:
         self.bucket_name = bucket_name
         self.s3_client = boto3.client(
             's3',
-            aws_access_key_id="AKIAZ5QOPEZNZYPQHCJO",
-            aws_secret_access_key="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",
+            aws_access_key_id="AWS_ACCESS_KEY",
+            aws_secret_access_key="AWS_SECRET_KEY",
             region_name=region_name
         )
         logging.info("Data Ingestion from S3 bucket initialized")
