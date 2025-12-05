@@ -1,4 +1,6 @@
 [core]
-    remote = capstoneproject
+    remote = capstone-project
 ['remote "capstoneproject"']
     url = s3://capstone-proj-1
+['remote "capstone-project"']
+    url = s3://<capstone-proj1>
