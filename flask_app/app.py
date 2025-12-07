@@ -69,25 +69,25 @@ def normalize_text(text):
 
 # Below code block is for local use
 # -------------------------------------------------------------------------------------
-mlflow.set_tracking_uri('https://dagshub.com/Samacker25/Capstone-project-1.mlflow')
-dagshub.init(repo_owner='Samacker25', repo_name='Capstone-project-1', mlflow=True)
+# mlflow.set_tracking_uri('https://dagshub.com/Samacker25/Capstone-project-1.mlflow')
+# dagshub.init(repo_owner='Samacker25', repo_name='Capstone-project-1', mlflow=True)
 # -------------------------------------------------------------------------------------
 
 # Below code block is for production use
 # -------------------------------------------------------------------------------------
 # Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+dagshub_token = os.getenv("CAPSTONE_TEST")
+if not dagshub_token:
+    raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
 
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "Samacker25"
-# repo_name = "Capstone-project-1"
+dagshub_url = "https://dagshub.com"
+repo_owner = "Samacker25"
+repo_name = "Capstone-project-1"
 # Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # -------------------------------------------------------------------------------------
 
 
@@ -115,7 +115,7 @@ PREDICTION_COUNT = Counter(
 model_name = "my_model"
 def get_latest_model_version(model_name):
     client = mlflow.MlflowClient()
-    latest_version = client.get_latest_versions(model_name, stages=["staging"])
+    latest_version = client.get_latest_versions(model_name, stages=["production"])
     if not latest_version:
         latest_version = client.get_latest_versions(model_name, stages=["None"])
     return latest_version[0].version if latest_version else None
